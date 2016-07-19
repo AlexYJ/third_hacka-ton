@@ -10,6 +10,7 @@ public class Account implements Serializable {
 	
 	private double seqAccount;
 	private String userId;
+	private String password;
 	private Nightingale nightingale;
 	private int cthelp;
 	private int ctcall;
