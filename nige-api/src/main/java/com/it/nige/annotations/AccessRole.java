@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface AccessRole {
 
-	Role role();
+	Role value();
 	
 	enum Role {
 		
