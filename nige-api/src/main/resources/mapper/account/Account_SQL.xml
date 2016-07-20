@@ -3,9 +3,12 @@
 <mapper namespace="account">
 	
 	<resultMap type="com.it.nige.entities.Account" id="Account">
+		<result property="userId" column="user_id"/>
 	</resultMap>
-	<parameterMap type="com.it.nige.entities.Account" id="Account"></parameterMap>
+	<parameterMap type="com.it.nige.entities.Account" id="Account">
+	</parameterMap>
 	
+	<!-- 회원가입 -->
 	<insert id="insertAccount" parameterMap="Account">
 	<![CDATA[
 		INSERT INTO 
@@ -14,5 +17,15 @@
 			(#{userId}, #{nightingale},#{name}, #{com}, #{profileimg});
 	]]>
 	</insert>
-	
+	<!-- 로그인 -->
+	<select id="getAccountByUserId" parameterType="String" resultMap="Account">
+	<![CDATA[
+		SELECT 
+			* 
+		FROM 
+			account 
+		WHERE 
+			user_id = #{userId};
+	]]>
+	</select>
 </mapper>

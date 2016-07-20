@@ -48,4 +48,18 @@ public class AccountController extends AbstractController {
 		Map result = accountService.setAccount(req, res, ac);
 		sendResponse(result, res);
 	}
+	
+	/**
+	 * 로그인
+	 * 
+	 * @param Account ac ( userId, password )
+	 * @date 2016.07.21
+	 */
+	@API(Useage.Experimental)
+	@AccessRole(Role.All)
+	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
+	public void doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody Account ac) {
+		Map result = accountService.doLogin(req, res, ac);
+		sendResponse(result, res);
+	}
 }

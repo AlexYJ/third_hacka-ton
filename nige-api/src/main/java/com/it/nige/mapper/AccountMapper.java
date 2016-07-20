@@ -20,4 +20,13 @@ public class AccountMapper extends AbstractMapper {
 		return insert("account.insertAccount", ac);
 	}
 	
+	/**
+	 * 로그인
+	 * 
+	 * @param userId
+	 * @return userId와 일치하는 Account객체 없을시 null
+	 */
+	public Account getAccountByUserId(String userId) {
+		return (Account) selectOne("account.getAccountByUserId", userId);
+	}
 }

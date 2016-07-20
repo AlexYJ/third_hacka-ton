@@ -66,11 +66,17 @@ public class Account implements Serializable {
 	public void setNightingale(Nightingale nightingale) {
 		this.nightingale = nightingale;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	@Override
 	public String toString() {
-		return "Account [seqAccount=" + seqAccount + ", userId=" + userId + ", nightingale=" + nightingale + ", cthelp="
-				+ cthelp + ", ctcall=" + ctcall + ", name=" + name + ", com=" + com + ", profileimg=" + profileimg
-				+ "]";
+		return "Account [seqAccount=" + seqAccount + ", userId=" + userId + ", password=" + password + ", nightingale="
+				+ nightingale + ", cthelp=" + cthelp + ", ctcall=" + ctcall + ", name=" + name + ", com=" + com
+				+ ", profileimg=" + profileimg + "]";
 	}
 }

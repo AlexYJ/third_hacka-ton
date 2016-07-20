@@ -43,4 +43,36 @@ public class AccountService {
 		}
 		return resultMap;
 	}
+	
+	/**
+	 * 로그인
+	 * @param ac
+	 * @return 패스워드 일치 여부 결과 HashMap
+	 */
+	public Map doLogin(HttpServletRequest req, HttpServletResponse res, Account ac) {
+		
+		Account saveAccount = accountMapper.getAccountByUserId(ac.getUserId());
+		Map resultMap = new HashMap<String, Object>();
+		
+		try {
+		
+			if (saveAccount.getPassword().equals(ac.getPassword())) {
+				resultMap.put("code", Error.SUCCESS.getCode());
+				resultMap.put("message", Error.SUCCESS.getMessage());
+				resultMap.put("statusCode", Error.SUCCESS.getStatusCode());
+				LOG.info("로그인 : {}",saveAccount.toString());
+			} else {
+				resultMap.put("code", Error.PASSWORD_NOT_CORRECT.getCode());
+				resultMap.put("message", Error.PASSWORD_NOT_CORRECT.getMessage());
+				resultMap.put("statusCode",Error.PASSWORD_NOT_CORRECT.getStatusCode());
+				LOG.info("패스워드 불일치 : {} / {}", ac.getPassword(), saveAccount.getPassword());
+			} // 2016.07.21 이거 나중에 유틸로 빼자 너무 더럽다..resultMapBuilder라던지..
+		} catch (NullPointerException e) {
+			resultMap.put("code", Error.NOT_FOUND_USER.getCode());
+			resultMap.put("message", Error.NOT_FOUND_USER.getMessage());
+			resultMap.put("statusCode", Error.NOT_FOUND_USER.getStatusCode());
+			LOG.error("가입되지 않은 사용자 : {}", ac.getUserId());
+		}
+		return resultMap;
+	}
 }

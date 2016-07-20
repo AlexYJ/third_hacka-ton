@@ -2,7 +2,9 @@ package com.it.nige.enums;
 
 public enum Error {
 	SUCCESS(100,"성공적으로 수행했습니다.",200),
-	DATABASE_UPDATE_FAIL(200,"데이터베이스 커밋 실패", 500)
+	DATABASE_UPDATE_FAIL(200,"데이터베이스 커밋 실패", 500),
+	PASSWORD_NOT_CORRECT(300,"패스워드 불일치",500),
+	NOT_FOUND_USER(301,"가입되지 않은 사용자", 500)
 	;
 	private int code;
 	private String message;
