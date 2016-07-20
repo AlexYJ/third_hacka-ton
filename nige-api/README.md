@@ -11,7 +11,7 @@
 ### API Docs ###
 
 **Users** 
-     
+***회원가입***     
 ```
 #!curl
 
@@ -41,6 +41,42 @@ curl -X POST /users
 {
   "code": 200,
   "message": "데이터베이스 커밋 실패",
+  "statusCode": 500
+}
+```
+***로그인***
+```
+#!curl
+
+curl -X POST /users/login
+```
+
+*Parameters*
+
+| Element    | Optional   | Type  |   Description       |
+| -----------|:-----------| ------|:--------------------|
+|  userId    |    FALSE   | String| 사용자 아이디       |
+|  password  |    FALSE   | String| 사용자 비밀번호     |
+
+*Response*
+```
+#!json
+*성공*
+{
+  "code": 100,
+  "message": "성공적으로 수행했습니다.",
+  "statusCode": 200
+}
+*실패*
+{
+  "code": 300,
+  "message": "패스워드 불일치",
+  "statusCode": 500
+}
+*실패*
+{
+  "code": 301,
+  "message": "가입되지 않은 사용자",
   "statusCode": 500
 }
 ```
