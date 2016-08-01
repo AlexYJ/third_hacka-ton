@@ -14,6 +14,7 @@ public class Letter implements Serializable {
 	private static final long serialVersionUID = 2220420624890689008L;
 	
 	private double seqLetter;
+	private double receiveSeqAccount;
 	private double seqAccount;
 	private Account account;
 	private Timestamp time;
@@ -24,6 +25,12 @@ public class Letter implements Serializable {
 	}
 	public void setSeqLetter(double seqLetter) {
 		this.seqLetter = seqLetter;
+	}
+	public double getReceiveSeqAccount() {
+		return receiveSeqAccount;
+	}
+	public void setReceiveSeqAccount(double receiveSeqAccount) {
+		this.receiveSeqAccount = receiveSeqAccount;
 	}
 	public double getSeqAccount() {
 		return seqAccount;
@@ -52,7 +59,7 @@ public class Letter implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Letter [seqLetter=" + seqLetter + ", seqAccount=" + seqAccount + ", account=" + account + ", time="
-				+ time + ", content=" + content + "]";
+		return "Letter [seqLetter=" + seqLetter + ", receiveSeqAccount=" + receiveSeqAccount + ", seqAccount="
+				+ seqAccount + ", account=" + account + ", time=" + time + ", content=" + content + "]";
 	}
 }
