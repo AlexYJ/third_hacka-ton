@@ -8,6 +8,11 @@
 	<parameterMap type="com.it.nige.entities.Account" id="Account">
 	</parameterMap>
 	
+	<resultMap type="com.it.nige.entities.Letter" id="Letter">
+		<result property="receiveSeqAccount" column="receive_seqAccount"/>
+	</resultMap>
+	<parameterMap type="com.it.nige.entities.Letter" id="Letter"></parameterMap>
+	
 	<!-- 회원가입 -->
 	<insert id="insertAccount" parameterMap="Account">
 	<![CDATA[
@@ -28,4 +33,13 @@
 			user_id = #{userId};
 	]]>
 	</select>
+	<!-- 감사편지 남기기 -->
+	<insert id="setLetter" parameterMap="Letter">
+	<![CDATA[
+		INSERT INTO 
+			letters (`receive_seqAccount`, `seqAccount`, `content`) 
+		VALUES 
+			(#{receiveSeqAccount}, #{seqAccount}, #{content});
+	]]>
+	</insert>
 </mapper>

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.it.nige.entities.Account;
+import com.it.nige.entities.Letter;
 
 @Repository("accountMapper")
 public class AccountMapper extends AbstractMapper {
@@ -28,5 +29,15 @@ public class AccountMapper extends AbstractMapper {
 	 */
 	public Account getAccountByUserId(String userId) {
 		return (Account) selectOne("account.getAccountByUserId", userId);
+	}
+	
+	/**
+	 * 감사편지남기기
+	 * 
+	 * @param letter
+	 * @return 성공 1 실패 0
+	 */
+	public Object setLetter(Letter letter) {
+		return insert("account.setLetter", letter);
 	}
 }

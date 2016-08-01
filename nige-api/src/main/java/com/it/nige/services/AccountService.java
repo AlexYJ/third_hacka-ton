@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.it.nige.entities.Account;
+import com.it.nige.entities.Letter;
 import com.it.nige.enums.Error;
 import com.it.nige.mapper.AccountMapper;
 
@@ -74,5 +75,22 @@ public class AccountService {
 			LOG.error("가입되지 않은 사용자 : {}", ac.getUserId());
 		}
 		return resultMap;
+	}
+	
+	/**
+	 * 감사편지 남기기
+	 * 
+	 * @param receiveSeqAccount 받는 계정 고유번호
+	 * @param Letter letter
+	 * @return 업데이트 결과 HashMap
+	 */
+	public Map setLetter(HttpServletRequest req, HttpServletResponse res, double receiveSeqAccount, Letter letter){
+		Account ac = (Account) req.getSession().getAttribute("account");
+		
+		// 2016.08.02 예외처리 resultMapBuilder만들고 할래.. 넘나 귀찮은것
+		letter.setReceiveSeqAccount(receiveSeqAccount);
+		letter.setSeqAccount(ac.getSeqAccount());
+		Object result = accountMapper.setLetter(letter);
+		return null;
 	}
 }
