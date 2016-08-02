@@ -81,3 +81,32 @@ curl -X POST /users/login
   "statusCode": 500
 }
 ```
+***감사편지남기기***
+```
+#!curl
+
+curl -X POST /users/{receive_seqAccount}/letters
+```
+
+*Parameters*
+
+| Element    | Optional   | Type  |   Description       |
+| -----------|:-----------| ------|:--------------------|
+|  content   |    FALSE   | String|     편지 내용       |
+
+*Response*
+```
+#!json
+*성공*
+{
+  "code": 100,
+  "message": "성공적으로 수행했습니다.",
+  "statusCode": 200
+}
+*실패*
+{
+  "code": 200,
+  "message": "데이터베이스 커밋 실패",
+  "statusCode": 500
+}
+```
