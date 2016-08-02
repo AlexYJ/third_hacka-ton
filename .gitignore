@@ -1,3 +1,5 @@
 nige-api/.classpath
 nige-api/.project
 nige-api/.settings/
+nige-api/.springBeans
+nige-api/src/main/webapp/WEB-INF/spring/datasource-context.xml
