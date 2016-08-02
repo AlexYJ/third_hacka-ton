@@ -1,0 +1,13 @@
+nige-api/.classpath
+nige-api/.gitignore
+nige-api/.project
+nige-api/.settings/.jsdtscope
+nige-api/.settings/org.eclipse.jdt.core.prefs
+nige-api/.settings/org.eclipse.m2e.core.prefs
+nige-api/.settings/org.eclipse.wst.common.component
+nige-api/.settings/org.eclipse.wst.common.project.facet.core.xml
+nige-api/.settings/org.eclipse.wst.jsdt.ui.superType.container
+nige-api/.settings/org.eclipse.wst.jsdt.ui.superType.name
+nige-api/.settings/org.eclipse.wst.validation.prefs
+nige-api/.settings/org.sonar.ide.eclipse.core.prefs
+nige-api/.springBeans
