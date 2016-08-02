@@ -15,6 +15,7 @@ import com.it.nige.entities.Account;
 import com.it.nige.entities.Letter;
 import com.it.nige.enums.Error;
 import com.it.nige.mapper.AccountMapper;
+import com.it.nige.utils.ResultMapBuilder;
 
 @Service("accountService")
 public class AccountService {
@@ -33,14 +34,10 @@ public class AccountService {
 		Object result = accountMapper.setAccount(ac);
 		Map resultMap = new HashMap<String, Object>();
 
-		if (result.equals(1)) {
-			resultMap.put("code", Error.SUCCESS.getCode());
-			resultMap.put("message", Error.SUCCESS.getMessage());
-			resultMap.put("statusCode", Error.SUCCESS.getStatusCode());
+		if(result.equals(1)){
+			resultMap = ResultMapBuilder.getInstance().setResult(Error.SUCCESS);
 		} else {
-			resultMap.put("code", Error.DATABASE_UPDATE_FAIL.getCode());
-			resultMap.put("message", Error.DATABASE_UPDATE_FAIL.getMessage());
-			resultMap.put("statusCode", Error.DATABASE_UPDATE_FAIL.getStatusCode());
+			resultMap = ResultMapBuilder.getInstance().setResult(Error.DATABASE_UPDATE_FAIL);
 		}
 		return resultMap;
 	}
@@ -58,20 +55,14 @@ public class AccountService {
 		try {
 		
 			if (saveAccount.getPassword().equals(ac.getPassword())) {
-				resultMap.put("code", Error.SUCCESS.getCode());
-				resultMap.put("message", Error.SUCCESS.getMessage());
-				resultMap.put("statusCode", Error.SUCCESS.getStatusCode());
+				resultMap = ResultMapBuilder.getInstance().setResult(Error.SUCCESS);
 				LOG.info("로그인 : {}",saveAccount.toString());
 			} else {
-				resultMap.put("code", Error.PASSWORD_NOT_CORRECT.getCode());
-				resultMap.put("message", Error.PASSWORD_NOT_CORRECT.getMessage());
-				resultMap.put("statusCode",Error.PASSWORD_NOT_CORRECT.getStatusCode());
+				resultMap = ResultMapBuilder.getInstance().setResult(Error.PASSWORD_NOT_CORRECT);
 				LOG.info("패스워드 불일치 : {} / {}", ac.getPassword(), saveAccount.getPassword());
-			} // 2016.07.21 이거 나중에 유틸로 빼자 너무 더럽다..resultMapBuilder라던지..
+			} 
 		} catch (NullPointerException e) {
-			resultMap.put("code", Error.NOT_FOUND_USER.getCode());
-			resultMap.put("message", Error.NOT_FOUND_USER.getMessage());
-			resultMap.put("statusCode", Error.NOT_FOUND_USER.getStatusCode());
+			resultMap = ResultMapBuilder.getInstance().setResult(Error.NOT_FOUND_USER);
 			LOG.error("가입되지 않은 사용자 : {}", ac.getUserId());
 		}
 		return resultMap;
@@ -91,6 +82,12 @@ public class AccountService {
 		letter.setReceiveSeqAccount(receiveSeqAccount);
 		letter.setSeqAccount(ac.getSeqAccount());
 		Object result = accountMapper.setLetter(letter);
-		return null;
+		HashMap<String,Object> resultMap = new HashMap<String, Object>();
+		if(result.equals(1)){
+			resultMap = ResultMapBuilder.getInstance().setResult(Error.SUCCESS);
+		} else {
+			resultMap = ResultMapBuilder.getInstance().setResult(Error.DATABASE_UPDATE_FAIL);
+		}
+		return resultMap;
 	}
 }
